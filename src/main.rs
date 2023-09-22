@@ -8,22 +8,23 @@ use crate::grid_implementation::Transitions;
 use crate::grid_implementation::Transitions::A1;
 use crate::grid_implementation::Transitions::A3;
 
-
 fn main() {
     let griddy = Grid::<States>::new();
 
-    let trans: Grid<Transitions> = Grid { matrix: [
-        [A3, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-    ]};
+    let trans: Grid<Transitions> = Grid {
+        matrix: [
+            [A3, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
+        ],
+    };
     println!("{}", trans);
 
     println!("{}", griddy);

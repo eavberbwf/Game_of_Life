@@ -1,5 +1,4 @@
 use crate::grid_implementation::Grid;
-use crate::grid_implementation::SIZE;
 use crate::grid_implementation::Transitions;
 use crate::grid_implementation::Transitions::AliveSteady;
 use crate::grid_implementation::Transitions::DeadSteady;
@@ -9,9 +8,9 @@ use crate::grid_implementation::Transitions::A3;
 use crate::grid_implementation::Transitions::D1;
 use crate::grid_implementation::Transitions::D2;
 use crate::grid_implementation::Transitions::D3;
+use crate::grid_implementation::SIZE;
 
 use std::fmt;
-
 
 //"🌑🌒🌓🌔🌕", "🌕🌖🌗🌘🌑"
 

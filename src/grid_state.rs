@@ -6,8 +6,7 @@ use crate::grid_implementation::SIZE;
 
 use std::fmt;
 
-impl Grid<States>{
-    
+impl Grid<States> {
     fn toroidal(&self, (x, y): (i8, i8)) -> States {
         let sz = SIZE as i8;
         let (xmod, ymod) = (x.rem_euclid(sz) as usize, y.rem_euclid(sz) as usize);
@@ -89,4 +88,3 @@ impl fmt::Display for Grid<States> {
         )
     }
 }
-
