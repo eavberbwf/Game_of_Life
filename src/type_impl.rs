@@ -7,7 +7,7 @@ use std::clone::Clone;
 use std::default::Default;
 use std::fmt;
 use std::marker::Copy;
-use std::ops::Index;
+use std::ops::{Index, IndexMut};
 
 use ndarray::{prelude::*, ViewRepr};
 use ndarray_rand::RandomExt;
@@ -82,6 +82,12 @@ impl<T> Index<(usize, usize)> for Grid<T> {
     }
 }
 
+impl<T> IndexMut<(usize, usize)> for Grid<T> {
+    fn index_mut(&mut self, idx: (usize, usize)) -> &mut Self::Output {
+        &mut self.matrix[(idx.0, idx.1)]
+    }
+}
+
 //Traits for State grids, including getting next generation
 
 impl Grid<States> {
@@ -124,9 +130,9 @@ impl Grid<States> {
                 let nghbr_count: u8 = next_gen.get_neighbor_count((i as i8, j as i8));
 
                 match nghbr_count {
-                    3 => next_gen.matrix[[i, j]] = Alive,
+                    3 => next_gen[(i, j)] = Alive,
                     4 => continue,
-                    _ => next_gen.matrix[[i, j]] = Dead,
+                    _ => next_gen[(i, j)] = Dead,
                 }
             }
         }
