@@ -1,33 +1,30 @@
-mod grid_state;
-mod grid_transitions;
+mod type_impl;
+use crate::type_impl::{Grid, States, States::*, SIZE};
+use ndarray::azip;
+use ndarray::prelude::*;
 
-mod grid_implementation;
-use crate::grid_implementation::Grid;
-use crate::grid_implementation::States;
-use crate::grid_implementation::Transitions;
-use crate::grid_implementation::Transitions::A1;
-use crate::grid_implementation::Transitions::A3;
+mod sequence_gen;
 
 fn main() {
-    let griddy = Grid::<States>::new();
+    let g: Grid<States> = Grid::new();
+    println!("{}", g);
+    println!("{}", g.next());
 
-    let trans: Grid<Transitions> = Grid {
-        matrix: [
-            [A3, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-            [A1, A1, A1, A1, A1, A1, A1, A1, A1, A1],
-        ],
-    };
-    println!("{}", trans);
+    use ndarray::{array, Zip};
 
-    println!("{}", griddy);
-    println!("{}", griddy.next());
-    println!("{}", griddy.len());
+    let k = sequence_gen::grids_to_sequence_grid(&g, &g.next());
+
+    println!("{}", k[[0, 0, 0]]);
+    println!("{}", k[[1, 0, 0]]);
+    println!("{}", k[[2, 0, 0]]);
+    println!("{}", k[[3, 0, 0]]);
+    println!("{}", k[[4, 0, 0]]);
+
+    for grid in sequence_gen::seq_to_grids(&g, &g.next()) {
+        println!("{}", grid);
+    }
+}
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>())
 }
