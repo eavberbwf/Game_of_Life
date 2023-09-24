@@ -1,0 +1,1 @@
+C:\Users\emilio\projects\Game_of_Life\target\debug\game_of_life.exe: C:\Users\emilio\projects\Game_of_Life\src\main.rs C:\Users\emilio\projects\Game_of_Life\src\sequence_gen.rs C:\Users\emilio\projects\Game_of_Life\src\type_impl.rs
