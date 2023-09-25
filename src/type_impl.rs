@@ -20,9 +20,9 @@ pub const SIZE: usize = 10;
 
 #[derive(Copy, Clone, Debug, PartialEq, Default)]
 pub enum States {
-    Dead = 0,
+    Dead,
     #[default]
-    Alive = 1,
+    Alive,
     A1,
     A2,
     A3,
