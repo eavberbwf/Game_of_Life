@@ -14,7 +14,9 @@ use ndarray_rand::RandomExt;
 
 use crate::type_impl::States::*;
 
-pub const SIZE: usize = 10;
+pub const SIZE: usize = 20;
+
+// Module to create basic types and their necessary methods.
 
 // Implementing possible cell states, including transitory states.
 
@@ -61,7 +63,7 @@ impl Distribution<States> for Standard {
     }
 }
 
-//Grid structure involving 2x2 matrix
+// Grid structure involving 2x2 matrix
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Grid<T> {
@@ -88,7 +90,7 @@ impl<T> IndexMut<(usize, usize)> for Grid<T> {
     }
 }
 
-//Traits for State grids, including getting next generation
+// Traits for State grids, including getting next generation and getting nth generation later.
 
 impl Grid<States> {
     pub fn new() -> Grid<States> {
@@ -137,6 +139,17 @@ impl Grid<States> {
             }
         }
         next_gen
+    }
+
+    pub fn nth_gen(&self, n: usize) -> Grid<States> {
+        if n == 0 {
+            return self.clone();
+        };
+        let mut gens: Vec<Grid<States>> = vec![self.clone(); n + 1];
+        for i in 1usize..n + 1 {
+            gens[i] = gens[i - 1].next();
+        }
+        gens[n].clone()
     }
 
     fn row_to_emotes(line: ArrayBase<ViewRepr<&States>, Dim<[usize; 1]>>) -> String {
