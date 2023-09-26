@@ -14,7 +14,7 @@ use ndarray_rand::RandomExt;
 
 use crate::type_impl::States::*;
 
-pub const SIZE: usize = 20;
+pub const SIZE: usize = 10;
 
 // Module to create basic types and their necessary methods.
 
@@ -106,7 +106,7 @@ impl Grid<States> {
         self[(xmod, ymod)]
     }
 
-    fn get_neighbor_count(&self, (x, y): (i8, i8)) -> u8 {
+    pub fn get_neighbor_count(&self, (x, y): (i8, i8)) -> u8 {
         let nghbhd: [(i8, i8); 9] = [
             (x - 1, y - 1),
             (x - 1, y),
@@ -129,7 +129,7 @@ impl Grid<States> {
 
         for i in 0..SIZE {
             for j in 0..SIZE {
-                let nghbr_count: u8 = next_gen.get_neighbor_count((i as i8, j as i8));
+                let nghbr_count: u8 = self.get_neighbor_count((i as i8, j as i8));
 
                 match nghbr_count {
                     3 => next_gen[(i, j)] = Alive,

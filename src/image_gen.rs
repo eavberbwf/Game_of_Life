@@ -45,13 +45,26 @@ fn grid_to_image(grid: Grid<States>) -> Frame {
     Frame::new(image.into_rgba8())
 }
 
-pub fn make_grid_gif() -> () {
+pub fn make_random_grid_gif() -> () {
     let g: Grid<States> = Grid::new();
     let gens: [(Grid<States>, Grid<States>); 20] =
         core::array::from_fn(|i| (g.nth_gen(i), g.nth_gen(i).next()));
     let full_seq = gens.iter().flat_map(grids_to_seq);
     let frames: Vec<_> = full_seq.map(grid_to_image).collect();
     let file = File::create("emoji_images/daddy.gif").unwrap();
+    let mut encoder = GifEncoder::new_with_speed(file, 15);
+    let _ = encoder.set_repeat(image::codecs::gif::Repeat::Infinite);
+    frames
+        .iter()
+        .for_each(|frame| encoder.encode_frame(frame.clone()).unwrap());
+}
+
+pub fn make_specific_grid_gif(g: Grid<States>) -> () {
+    let gens: [(Grid<States>, Grid<States>); 40] =
+        core::array::from_fn(|i| (g.nth_gen(i), g.nth_gen(i).next()));
+    let full_seq = gens.iter().flat_map(grids_to_seq);
+    let frames: Vec<_> = full_seq.map(grid_to_image).collect();
+    let file = File::create("emoji_images/glider.gif").unwrap();
     let mut encoder = GifEncoder::new_with_speed(file, 15);
     let _ = encoder.set_repeat(image::codecs::gif::Repeat::Infinite);
     frames

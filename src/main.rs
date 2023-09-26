@@ -15,7 +15,28 @@ use std::fs::{read_dir, DirEntry, File};
 use std::path::Path;
 
 fn main() {
-    image_gen::make_grid_gif();
+    let g: Grid<States> = Grid {
+        matrix: arr2(&[
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Alive, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Alive, Dead, Dead, Dead, Dead, Dead],
+            [
+                Dead, Dead, Alive, Alive, Alive, Dead, Dead, Dead, Dead, Dead,
+            ],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+            [Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead, Dead],
+        ])
+    };
+    image_gen::make_random_grid_gif();
+    // println!("{}", g.get_neighbor_count((3,4)));
+    // println!("{}", g);
+    // println!("{}", g.next());
+    // println!("{}", g.next().next());
+    // println!("{}", g.next().next().next());
 }
 
 fn print_type_of<T>(_: &T) {
